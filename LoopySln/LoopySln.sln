@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loopy", "Loopy\Loopy.csproj", "{59CA9FC4-98A4-4F38-943F-EC72EFEBA33B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoopyUI", "Loopy\LoopyUI.csproj", "{59CA9FC4-98A4-4F38-943F-EC72EFEBA33B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelLibrary", "ModelLibrary\ModelLibrary.csproj", "{1ACB7897-67DB-43E0-AFD8-3662D36E6165}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{59CA9FC4-98A4-4F38-943F-EC72EFEBA33B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59CA9FC4-98A4-4F38-943F-EC72EFEBA33B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59CA9FC4-98A4-4F38-943F-EC72EFEBA33B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ACB7897-67DB-43E0-AFD8-3662D36E6165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ACB7897-67DB-43E0-AFD8-3662D36E6165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ACB7897-67DB-43E0-AFD8-3662D36E6165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ACB7897-67DB-43E0-AFD8-3662D36E6165}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

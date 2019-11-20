@@ -33,13 +33,15 @@
             this.labelMain = new System.Windows.Forms.Label();
             this.labelLine = new System.Windows.Forms.Label();
             this.groupBoxMain = new System.Windows.Forms.GroupBox();
-            this.comboBoxIncDecSec = new System.Windows.Forms.ComboBox();
+            this.checkBoxSec = new System.Windows.Forms.CheckBox();
+            this.groupBoxSec = new System.Windows.Forms.GroupBox();
             this.textBoxToSec = new System.Windows.Forms.TextBox();
             this.labelToSec = new System.Windows.Forms.Label();
-            this.textBoxFromSec = new System.Windows.Forms.TextBox();
-            this.labelFromSec = new System.Windows.Forms.Label();
+            this.labelIncDecSec = new System.Windows.Forms.Label();
             this.textBoxVarNameSec = new System.Windows.Forms.TextBox();
             this.labelVarNameSec = new System.Windows.Forms.Label();
+            this.labelFromSec = new System.Windows.Forms.Label();
+            this.textBoxFromSec = new System.Windows.Forms.TextBox();
             this.comboBoxIncDec = new System.Windows.Forms.ComboBox();
             this.textBoxTo = new System.Windows.Forms.TextBox();
             this.labelTo = new System.Windows.Forms.Label();
@@ -58,15 +60,14 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelMessage = new System.Windows.Forms.Label();
-            this.groupBoxSec = new System.Windows.Forms.GroupBox();
-            this.checkBoxSec = new System.Windows.Forms.CheckBox();
             this.groupBoxMain.SuspendLayout();
-            this.menuStripMain.SuspendLayout();
             this.groupBoxSec.SuspendLayout();
+            this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxInput
             // 
+            this.textBoxInput.BackColor = System.Drawing.Color.LavenderBlush;
             this.textBoxInput.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxInput.Location = new System.Drawing.Point(103, 61);
             this.textBoxInput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -80,12 +81,12 @@
             // 
             this.labelMain.AutoSize = true;
             this.labelMain.Font = new System.Drawing.Font("Segoe UI", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMain.ForeColor = System.Drawing.Color.Black;
-            this.labelMain.Location = new System.Drawing.Point(663, 0);
+            this.labelMain.ForeColor = System.Drawing.Color.Maroon;
+            this.labelMain.Location = new System.Drawing.Point(657, 0);
             this.labelMain.Name = "labelMain";
-            this.labelMain.Size = new System.Drawing.Size(108, 45);
+            this.labelMain.Size = new System.Drawing.Size(126, 45);
             this.labelMain.TabIndex = 12;
-            this.labelMain.Text = "Loopy";
+            this.labelMain.Text = "  Loopy";
             // 
             // labelLine
             // 
@@ -116,30 +117,44 @@
             this.groupBoxMain.TabStop = false;
             this.groupBoxMain.Text = "Customize Varable";
             // 
-            // comboBoxIncDecSec
+            // checkBoxSec
             // 
-            this.comboBoxIncDecSec.BackColor = System.Drawing.Color.White;
-            this.comboBoxIncDecSec.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBoxIncDecSec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxIncDecSec.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.comboBoxIncDecSec.FormattingEnabled = true;
-            this.comboBoxIncDecSec.Items.AddRange(new object[] {
-            "Increment",
-            "Decrement"});
-            this.comboBoxIncDecSec.Location = new System.Drawing.Point(310, 24);
-            this.comboBoxIncDecSec.Name = "comboBoxIncDecSec";
-            this.comboBoxIncDecSec.Size = new System.Drawing.Size(121, 25);
-            this.comboBoxIncDecSec.TabIndex = 14;
-            this.comboBoxIncDecSec.SelectedIndexChanged += new System.EventHandler(this.comboBoxIncDecSec_SelectedIndexChanged);
+            this.checkBoxSec.AutoSize = true;
+            this.checkBoxSec.BackColor = System.Drawing.Color.LavenderBlush;
+            this.checkBoxSec.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxSec.Location = new System.Drawing.Point(23, 92);
+            this.checkBoxSec.Name = "checkBoxSec";
+            this.checkBoxSec.Size = new System.Drawing.Size(111, 17);
+            this.checkBoxSec.TabIndex = 22;
+            this.checkBoxSec.Text = "Use 2nd variable";
+            this.checkBoxSec.UseVisualStyleBackColor = false;
+            this.checkBoxSec.CheckedChanged += new System.EventHandler(this.checkBoxSec_CheckedChanged);
+            // 
+            // groupBoxSec
+            // 
+            this.groupBoxSec.Controls.Add(this.textBoxToSec);
+            this.groupBoxSec.Controls.Add(this.labelToSec);
+            this.groupBoxSec.Controls.Add(this.labelIncDecSec);
+            this.groupBoxSec.Controls.Add(this.textBoxVarNameSec);
+            this.groupBoxSec.Controls.Add(this.labelVarNameSec);
+            this.groupBoxSec.Controls.Add(this.labelFromSec);
+            this.groupBoxSec.Controls.Add(this.textBoxFromSec);
+            this.groupBoxSec.Location = new System.Drawing.Point(0, 106);
+            this.groupBoxSec.Name = "groupBoxSec";
+            this.groupBoxSec.Size = new System.Drawing.Size(755, 57);
+            this.groupBoxSec.TabIndex = 21;
+            this.groupBoxSec.TabStop = false;
             // 
             // textBoxToSec
             // 
+            this.textBoxToSec.BackColor = System.Drawing.Color.PeachPuff;
             this.textBoxToSec.Location = new System.Drawing.Point(639, 24);
             this.textBoxToSec.MaxLength = 6;
             this.textBoxToSec.Name = "textBoxToSec";
+            this.textBoxToSec.ReadOnly = true;
             this.textBoxToSec.Size = new System.Drawing.Size(49, 25);
-            this.textBoxToSec.TabIndex = 16;
-            this.textBoxToSec.Text = "100";
+            this.textBoxToSec.TabIndex = 21;
+            this.textBoxToSec.Text = "0";
             this.textBoxToSec.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // labelToSec
@@ -149,31 +164,24 @@
             this.labelToSec.Location = new System.Drawing.Point(612, 27);
             this.labelToSec.Name = "labelToSec";
             this.labelToSec.Size = new System.Drawing.Size(21, 17);
-            this.labelToSec.TabIndex = 17;
+            this.labelToSec.TabIndex = 20;
             this.labelToSec.Text = "to";
             // 
-            // textBoxFromSec
+            // labelIncDecSec
             // 
-            this.textBoxFromSec.Location = new System.Drawing.Point(544, 24);
-            this.textBoxFromSec.MaxLength = 6;
-            this.textBoxFromSec.Name = "textBoxFromSec";
-            this.textBoxFromSec.Size = new System.Drawing.Size(49, 25);
-            this.textBoxFromSec.TabIndex = 15;
-            this.textBoxFromSec.Text = "0";
-            this.textBoxFromSec.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // labelFromSec
-            // 
-            this.labelFromSec.AutoSize = true;
-            this.labelFromSec.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFromSec.Location = new System.Drawing.Point(501, 27);
-            this.labelFromSec.Name = "labelFromSec";
-            this.labelFromSec.Size = new System.Drawing.Size(37, 17);
-            this.labelFromSec.TabIndex = 18;
-            this.labelFromSec.Text = "from";
+            this.labelIncDecSec.AutoSize = true;
+            this.labelIncDecSec.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIncDecSec.ForeColor = System.Drawing.Color.Black;
+            this.labelIncDecSec.Location = new System.Drawing.Point(322, 25);
+            this.labelIncDecSec.Name = "labelIncDecSec";
+            this.labelIncDecSec.Size = new System.Drawing.Size(86, 20);
+            this.labelIncDecSec.TabIndex = 14;
+            this.labelIncDecSec.Text = "Decrement";
+            this.labelIncDecSec.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textBoxVarNameSec
             // 
+            this.textBoxVarNameSec.BackColor = System.Drawing.Color.LavenderBlush;
             this.textBoxVarNameSec.Location = new System.Drawing.Point(130, 24);
             this.textBoxVarNameSec.Name = "textBoxVarNameSec";
             this.textBoxVarNameSec.Size = new System.Drawing.Size(149, 25);
@@ -190,9 +198,31 @@
             this.labelVarNameSec.TabIndex = 19;
             this.labelVarNameSec.Text = "2nd Variable Name";
             // 
+            // labelFromSec
+            // 
+            this.labelFromSec.AutoSize = true;
+            this.labelFromSec.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFromSec.Location = new System.Drawing.Point(501, 27);
+            this.labelFromSec.Name = "labelFromSec";
+            this.labelFromSec.Size = new System.Drawing.Size(37, 17);
+            this.labelFromSec.TabIndex = 18;
+            this.labelFromSec.Text = "from";
+            // 
+            // textBoxFromSec
+            // 
+            this.textBoxFromSec.BackColor = System.Drawing.Color.LavenderBlush;
+            this.textBoxFromSec.Location = new System.Drawing.Point(544, 24);
+            this.textBoxFromSec.MaxLength = 6;
+            this.textBoxFromSec.Name = "textBoxFromSec";
+            this.textBoxFromSec.Size = new System.Drawing.Size(49, 25);
+            this.textBoxFromSec.TabIndex = 15;
+            this.textBoxFromSec.Text = "100";
+            this.textBoxFromSec.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxFromSec.TextChanged += new System.EventHandler(this.textBoxFromSec_TextChanged);
+            // 
             // comboBoxIncDec
             // 
-            this.comboBoxIncDec.BackColor = System.Drawing.Color.White;
+            this.comboBoxIncDec.BackColor = System.Drawing.Color.LavenderBlush;
             this.comboBoxIncDec.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBoxIncDec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxIncDec.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -208,6 +238,7 @@
             // 
             // textBoxTo
             // 
+            this.textBoxTo.BackColor = System.Drawing.Color.LavenderBlush;
             this.textBoxTo.Location = new System.Drawing.Point(639, 42);
             this.textBoxTo.MaxLength = 6;
             this.textBoxTo.Name = "textBoxTo";
@@ -228,6 +259,7 @@
             // 
             // textBoxFrom
             // 
+            this.textBoxFrom.BackColor = System.Drawing.Color.LavenderBlush;
             this.textBoxFrom.Location = new System.Drawing.Point(544, 42);
             this.textBoxFrom.MaxLength = 6;
             this.textBoxFrom.Name = "textBoxFrom";
@@ -248,6 +280,7 @@
             // 
             // textBoxVarName
             // 
+            this.textBoxVarName.BackColor = System.Drawing.Color.LavenderBlush;
             this.textBoxVarName.Location = new System.Drawing.Point(130, 42);
             this.textBoxVarName.Name = "textBoxVarName";
             this.textBoxVarName.Size = new System.Drawing.Size(149, 25);
@@ -273,6 +306,7 @@
             // 
             // textBoxOutput
             // 
+            this.textBoxOutput.BackColor = System.Drawing.Color.LavenderBlush;
             this.textBoxOutput.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxOutput.Location = new System.Drawing.Point(16, 422);
             this.textBoxOutput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -285,12 +319,12 @@
             // 
             // buttonGenerate
             // 
-            this.buttonGenerate.BackColor = System.Drawing.Color.LightGreen;
+            this.buttonGenerate.BackColor = System.Drawing.Color.Pink;
             this.buttonGenerate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonGenerate.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.buttonGenerate.FlatAppearance.BorderColor = System.Drawing.Color.Magenta;
             this.buttonGenerate.FlatAppearance.BorderSize = 2;
-            this.buttonGenerate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkSeaGreen;
-            this.buttonGenerate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.PaleGreen;
+            this.buttonGenerate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.HotPink;
+            this.buttonGenerate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightPink;
             this.buttonGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonGenerate.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonGenerate.Location = new System.Drawing.Point(619, 360);
@@ -303,9 +337,10 @@
             // 
             // buttonClear
             // 
-            this.buttonClear.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonClear.BackColor = System.Drawing.Color.LavenderBlush;
             this.buttonClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonClear.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.buttonClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonClear.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonClear.Location = new System.Drawing.Point(183, 594);
             this.buttonClear.Name = "buttonClear";
@@ -317,11 +352,13 @@
             // 
             // buttonCopy
             // 
-            this.buttonCopy.BackColor = System.Drawing.Color.LightGreen;
+            this.buttonCopy.BackColor = System.Drawing.Color.Pink;
             this.buttonCopy.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonCopy.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.buttonCopy.FlatAppearance.BorderColor = System.Drawing.Color.Magenta;
             this.buttonCopy.FlatAppearance.BorderSize = 2;
-            this.buttonCopy.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonCopy.FlatAppearance.MouseDownBackColor = System.Drawing.Color.HotPink;
+            this.buttonCopy.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightPink;
+            this.buttonCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCopy.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCopy.Location = new System.Drawing.Point(619, 594);
             this.buttonCopy.Name = "buttonCopy";
@@ -333,7 +370,7 @@
             // 
             // buttonReset
             // 
-            this.buttonReset.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonReset.BackColor = System.Drawing.Color.LavenderBlush;
             this.buttonReset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonReset.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -347,6 +384,7 @@
             // 
             // menuStripMain
             // 
+            this.menuStripMain.BackColor = System.Drawing.Color.LightPink;
             this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.themeToolStripMenuItem,
             this.aboutToolStripMenuItem,
@@ -362,6 +400,7 @@
             this.themeToolStripMenuItem.Name = "themeToolStripMenuItem";
             this.themeToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.themeToolStripMenuItem.Text = "Theme";
+            this.themeToolStripMenuItem.Click += new System.EventHandler(this.themeToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -374,6 +413,7 @@
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.helpToolStripMenuItem.Text = "About";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // labelMessage
             // 
@@ -382,43 +422,15 @@
             this.labelMessage.ForeColor = System.Drawing.Color.Black;
             this.labelMessage.Location = new System.Drawing.Point(81, 360);
             this.labelMessage.Name = "labelMessage";
-            this.labelMessage.Size = new System.Drawing.Size(45, 20);
+            this.labelMessage.Size = new System.Drawing.Size(0, 20);
             this.labelMessage.TabIndex = 13;
-            this.labelMessage.Text = "gggg";
             this.labelMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // groupBoxSec
-            // 
-            this.groupBoxSec.Controls.Add(this.textBoxVarNameSec);
-            this.groupBoxSec.Controls.Add(this.comboBoxIncDecSec);
-            this.groupBoxSec.Controls.Add(this.labelVarNameSec);
-            this.groupBoxSec.Controls.Add(this.textBoxToSec);
-            this.groupBoxSec.Controls.Add(this.labelFromSec);
-            this.groupBoxSec.Controls.Add(this.labelToSec);
-            this.groupBoxSec.Controls.Add(this.textBoxFromSec);
-            this.groupBoxSec.Location = new System.Drawing.Point(0, 106);
-            this.groupBoxSec.Name = "groupBoxSec";
-            this.groupBoxSec.Size = new System.Drawing.Size(755, 57);
-            this.groupBoxSec.TabIndex = 21;
-            this.groupBoxSec.TabStop = false;
-            // 
-            // checkBoxSec
-            // 
-            this.checkBoxSec.AutoSize = true;
-            this.checkBoxSec.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxSec.Location = new System.Drawing.Point(23, 92);
-            this.checkBoxSec.Name = "checkBoxSec";
-            this.checkBoxSec.Size = new System.Drawing.Size(111, 17);
-            this.checkBoxSec.TabIndex = 22;
-            this.checkBoxSec.Text = "Use 2nd variable";
-            this.checkBoxSec.UseVisualStyleBackColor = true;
-            this.checkBoxSec.CheckedChanged += new System.EventHandler(this.checkBoxSec_CheckedChanged);
             // 
             // LoopyMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.MistyRose;
             this.ClientSize = new System.Drawing.Size(783, 651);
             this.Controls.Add(this.labelMessage);
             this.Controls.Add(this.buttonReset);
@@ -437,14 +449,15 @@
             this.MainMenuStrip = this.menuStripMain;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "LoopyMainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Loopy";
             this.Load += new System.EventHandler(this.LoopyMainForm_Load);
             this.groupBoxMain.ResumeLayout(false);
             this.groupBoxMain.PerformLayout();
-            this.menuStripMain.ResumeLayout(false);
-            this.menuStripMain.PerformLayout();
             this.groupBoxSec.ResumeLayout(false);
             this.groupBoxSec.PerformLayout();
+            this.menuStripMain.ResumeLayout(false);
+            this.menuStripMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -473,9 +486,6 @@
         private System.Windows.Forms.ToolStripMenuItem themeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ComboBox comboBoxIncDecSec;
-        private System.Windows.Forms.TextBox textBoxToSec;
-        private System.Windows.Forms.Label labelToSec;
         private System.Windows.Forms.TextBox textBoxFromSec;
         private System.Windows.Forms.Label labelFromSec;
         private System.Windows.Forms.TextBox textBoxVarNameSec;
@@ -483,6 +493,9 @@
         private System.Windows.Forms.Label labelMessage;
         private System.Windows.Forms.CheckBox checkBoxSec;
         private System.Windows.Forms.GroupBox groupBoxSec;
+        private System.Windows.Forms.Label labelIncDecSec;
+        private System.Windows.Forms.TextBox textBoxToSec;
+        private System.Windows.Forms.Label labelToSec;
     }
 }
 
