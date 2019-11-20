@@ -91,7 +91,6 @@ namespace Loopy
                 DisplayMessage("Please Wait");
 
                 string getVarName = textBoxVarName.Text;
-                string getBehavior = comboBoxIncDec.Text;
                 int getFrom = Convert.ToInt32(textBoxFrom.Text);
                 int getTo = Convert.ToInt32(textBoxTo.Text);
                 bool getCheckbox = checkBoxSec.Checked;
@@ -117,7 +116,7 @@ namespace Loopy
                 {
                     StringBuilder sbOut = new StringBuilder();
 
-                    while (getFrom <= getTo)
+                    while (getFrom <= getTo )
                     {
                         string strOut = getInput.Replace(getVarName, getFrom.ToString());
                         if (getCheckbox)
@@ -127,23 +126,30 @@ namespace Loopy
                         sbOut.Append(strOut);
                         sbOut.Append(Environment.NewLine);
 
-                        if (getBehavior == "Increment")
+                        getFrom++;
+                        if (getCheckbox)
                         {
-                            getFrom++;
-                            if (getCheckbox)
-                            {
-                                getFromSec--;
-                            }
+                            getFromSec--;
                         }
-                        else
-                        {
-                            getFrom--;
-                            if (getCheckbox)
-                            {
-                                getFromSec++;
-                            }
-                        }
+                        
 
+                    }
+
+                    while (getFrom >= getTo)
+                    {
+                        string strOut = getInput.Replace(getVarName, getFrom.ToString());
+                        if (getCheckbox)
+                        {
+                            strOut = strOut.Replace(getVarNameSec, getFromSec.ToString());
+                        }
+                        sbOut.Append(strOut);
+                        sbOut.Append(Environment.NewLine);
+
+                        getFrom--;
+                        if (getCheckbox)
+                        {
+                            getFromSec++;
+                        }
                     }
 
                     return sbOut.ToString();
@@ -154,7 +160,7 @@ namespace Loopy
             //display when user type any other data type such as "string" rather than "Int" in textBoxFrom or textBoxTo
             catch (FormatException)
             {
-                ErrorMessage("Incorrect text format. Please check all text fields again");
+                ErrorMessage("Incorrect text. Please check all text fields again");
             }
             //Display common error
             catch(Exception ex)
@@ -179,7 +185,7 @@ namespace Loopy
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Display Ablout form
+            //Display About form
             new About().Show();
         }
 
@@ -187,13 +193,15 @@ namespace Loopy
         {
             try
             {
-                labelMessage.Text = "";
+                ClearMessage();
+                //when user try to change 2nd "textBoxFromSec" text, This will auto trigger and fill "textBoxToSec" value automatically
                 int intFromTemp = Convert.ToInt32(textBoxFrom.Text);
                 int intToTemp = Convert.ToInt32(textBoxTo.Text);
 
                 int intFromSecTemp = Convert.ToInt32(textBoxFromSec.Text);
                 int intToSecTemp = Convert.ToInt32(textBoxToSec.Text);
 
+                //calculate the difference of 1st variables's "From" to "To"
                 intToSecTemp = intFromSecTemp + (intFromTemp - intToTemp);
 
                 textBoxToSec.Text = intToSecTemp.ToString();

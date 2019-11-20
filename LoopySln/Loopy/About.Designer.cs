@@ -79,7 +79,7 @@
             this.richTextBoxAbout.Size = new System.Drawing.Size(315, 303);
             this.richTextBoxAbout.TabIndex = 4;
             this.richTextBoxAbout.Text = "This is a small program which was created on my leasure time and I really hope th" +
-    "is program will be helpful for everyone. \n\nhttps://github.com\n";
+    "is program will be helpful for all of you. \n\n\nhttps://github.com/dashtharindu\n";
             // 
             // About
             // 
