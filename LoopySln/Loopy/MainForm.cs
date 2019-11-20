@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-//using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Loopy
@@ -31,7 +27,7 @@ namespace Loopy
             {
                 textBoxFrom.Text = "100";
                 textBoxTo.Text = "0";
-                labelIncDecSec.Text = "Increment" ;
+                labelIncDecSec.Text = "Increment";
                 textBoxFromSec.Text = "0";
             }
             else
@@ -63,19 +59,20 @@ namespace Loopy
             try
             {
                 ClearMessage();
+
                 textBoxOutput.SelectAll();
                 textBoxOutput.Copy();
                 textBoxOutput.DeselectAll();
                 SuccessMessage("Output copied to the clipboard \nUse Ctrl+V or Select \"Paste\" from the right click menu to paste it");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ErrorMessage(ex);
             }
-            
+
         }
 
-        private void buttonGenerate_Click(object sender, EventArgs e)
+        private async void buttonGenerate_Click(object sender, EventArgs e)
         {
             //-- Main Functionality of this application --
             //gets all inputs to the variables and use them to generate the output
@@ -83,72 +80,102 @@ namespace Loopy
             //so I did limited textbox length property to "6" for textBoxFrom , textBoxTo and textBoxToSec as well.
 
             ///TODO-Looking forward more reliable and fast way of doing this
-            ///TODO-Add "progressBarMain" for loading using Async method and Using.System.Threading
 
+            ClearMessage();
+            
+            CursorBusy(true);
+            DisplayMessage("Please Wait");
+            textBoxOutput.Clear();
             try
             {
-                ClearMessage();
-                DisplayMessage("Please Wait");
-
-                string getVarName = textBoxVarName.Text;
+                String getVarName = textBoxVarName.Text;
                 int getFrom = Convert.ToInt32(textBoxFrom.Text);
                 int getTo = Convert.ToInt32(textBoxTo.Text);
                 bool getCheckbox = checkBoxSec.Checked;
+                String getBehavior = comboBoxIncDec.Text;
 
                 //get Second variable
-                string getVarNameSec = textBoxVarNameSec.Text;
+                String getVarNameSec = textBoxVarNameSec.Text;
                 int getFromSec = Convert.ToInt32(textBoxFromSec.Text);
 
-                string getInput = textBoxInput.Text;
-                if (getInput!="")
+                //Main Task
+                String getInput = textBoxInput.Text;
+
+                //check input is not empty
+                if (getInput != "")
                 {
-                    textBoxOutput.Text = GenerateOutput();
+                    ///TODO-most expensive process is ASSIGNING values to the TextBox. How to fix it?
+                    //When we use higher values for "get" and "to" fields, UI becomes freeze. 
+                    textBoxOutput.Text = await Task.Run(() => GenerateOutput());
+
+                    //GenerateOutput();
+                    CursorBusy(false);
                     SuccessMessage("Done!");
                 }
 
                 //Input text is blank
                 else
                 {
+                    CursorBusy(false);
                     DisplayMessage("Please Insert Your Text");
                 }
 
-                string GenerateOutput()
+                String GenerateOutput()
                 {
                     StringBuilder sbOut = new StringBuilder();
 
-                    while (getFrom <= getTo )
+                    //This "if" is statement use for separate 2 while loop
+                    //otherwise end of the 1st while loop becomes "getFrom == getTo" and it goes to the 2nd while loop as well
+                    //Equal to "Increment"
+                    if (getBehavior == "Increment")
                     {
-                        string strOut = getInput.Replace(getVarName, getFrom.ToString());
-                        if (getCheckbox)
+                        while (getFrom <= getTo)
                         {
-                            strOut = strOut.Replace(getVarNameSec, getFromSec.ToString());
-                        }
-                        sbOut.Append(strOut);
-                        sbOut.Append(Environment.NewLine);
+                            String strOut = getInput.Replace(getVarName, getFrom.ToString());
+                            if (getCheckbox)
+                            {
+                                strOut = strOut.Replace(getVarNameSec, getFromSec.ToString());
+                            }
+                            sbOut.Append(strOut);
+                            sbOut.Append(Environment.NewLine);
 
-                        getFrom++;
-                        if (getCheckbox)
-                        {
-                            getFromSec--;
-                        }
-                        
+                            //--This way is really slooooooow but takes only 50mb from memory-- 
+                            //100000 loops takes more than 5min (sbOut takes 10sec)
+                            //textBoxOutput.AppendText(strOut);
+                            //textBoxOutput.AppendText(Environment.NewLine);
 
+                            getFrom++;
+
+                            if (getCheckbox)
+                            {
+                                getFromSec--;
+                            }
+
+                        }
                     }
 
-                    while (getFrom >= getTo)
+                    //Equal to "Decrement"
+                    else
                     {
-                        string strOut = getInput.Replace(getVarName, getFrom.ToString());
-                        if (getCheckbox)
+                        while (getFrom >= getTo)
                         {
-                            strOut = strOut.Replace(getVarNameSec, getFromSec.ToString());
-                        }
-                        sbOut.Append(strOut);
-                        sbOut.Append(Environment.NewLine);
+                            String strOut = getInput.Replace(getVarName, getFrom.ToString());
+                            if (getCheckbox)
+                            {
+                                strOut = strOut.Replace(getVarNameSec, getFromSec.ToString());
+                            }
+                            sbOut.Append(strOut);
+                            sbOut.Append(Environment.NewLine);
 
-                        getFrom--;
-                        if (getCheckbox)
-                        {
-                            getFromSec++;
+                            //textBoxOutput.AppendText(strOut);
+                            //textBoxOutput.AppendText(Environment.NewLine);
+
+                            getFrom--;
+
+                            if (getCheckbox)
+                            {
+                                getFromSec++;
+                            }
                         }
                     }
 
@@ -160,11 +187,13 @@ namespace Loopy
             //display when user type any other data type such as "string" rather than "Int" in textBoxFrom or textBoxTo
             catch (FormatException)
             {
+                CursorBusy(false);
                 ErrorMessage("Incorrect text. Please check all text fields again");
             }
             //Display common error
-            catch(Exception ex)
+            catch (Exception ex)
             {
+                CursorBusy(false);
                 ErrorMessage(ex);
             }
 
@@ -206,7 +235,7 @@ namespace Loopy
 
                 textBoxToSec.Text = intToSecTemp.ToString();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 labelMessage.ForeColor = Color.Red;
                 labelMessage.Text = $"Error\n{ex.Message}";
@@ -217,18 +246,47 @@ namespace Loopy
 
         private void themeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ///TODO-improve dark theme
-            if(this.BackColor == Color.Black)
+            ///TODO-needs to improve dark theme
+            if (this.BackColor == Color.MistyRose)
             {
-                this.BackColor = Color.MistyRose;
-                this.ForeColor = Color.Black;
+                this.BackColor = Color.Black;
+                this.ForeColor = Color.MistyRose;
+                this.UpdateDefaultButton();
+
+                checkBoxSec.BackColor = Color.Black;
+                labelIncDecSec.ForeColor = Color.White;
+                groupBoxMain.ForeColor = Color.White;
+
+                textBoxInput.BackColor= Color.Black;
+                textBoxInput.ForeColor = Color.White;
+                textBoxOutput.BackColor = Color.Black;
+                textBoxOutput.ForeColor = Color.White;
+
+                menuStripMain.BackColor= Color.Black;
+                menuStripMain.ForeColor = Color.White;
+
+
+                buttonCopy.BackColor = Color.Black;
+                buttonCopy.FlatAppearance.BorderColor = Color.White;
+                buttonCopy.FlatAppearance.MouseDownBackColor = Color.DimGray;
+                buttonCopy.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+
+                buttonGenerate.BackColor = Color.Black;
+                buttonGenerate.FlatAppearance.BorderColor = Color.White;
+                buttonGenerate.FlatAppearance.MouseDownBackColor = Color.DimGray;
+                buttonGenerate.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+
+                buttonReset.BackColor = Color.Black;
+                buttonClear.BackColor = Color.Black;
+
+                themeToolStripMenuItem.Text = "Light Theme";
+
             }
             else
             {
-                this.BackColor = Color.Black;
-                this.ForeColor = Color.White;
+                Application.Restart();
             }
-            
+
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -253,7 +311,7 @@ namespace Loopy
         /// Text color will be in red
         /// </summary>
         /// <param name="ErrMessage">Use to pass the Custom Error Message (data type should be "String")</param>
-        private void ErrorMessage(string ErrMessage)
+        private void ErrorMessage(String ErrMessage)
         {
             labelMessage.ForeColor = Color.Red;
             labelMessage.Text = $"Error \n{ErrMessage}";
@@ -261,12 +319,12 @@ namespace Loopy
 
 
         /// <summary>
-        /// Display Custom message in black
+        /// Display Custom message in gray
         /// </summary>
         /// <param name="dmsg">Use to pass any custom message (data type should be "string")</param>
-        private void DisplayMessage(string dmsg)
+        private void DisplayMessage(String dmsg)
         {
-            labelMessage.ForeColor = Color.Black;
+            labelMessage.ForeColor = Color.DimGray;
             labelMessage.Text = dmsg;
         }
 
@@ -284,11 +342,28 @@ namespace Loopy
         /// Display Success labelMessage in green
         /// </summary>
         /// <param name="msg">Use to pass the success message (data type should be "string")</param>
-        private void SuccessMessage(string msg)
+        private void SuccessMessage(String msg)
         {
             labelMessage.ForeColor = Color.DarkGreen;
             labelMessage.Text = msg;
         }
+
+        /// <summary>
+        /// Change mouse cursor to a busy state
+        /// </summary>
+        /// <param name="busy">pass boolean value (is busy or not)</param>
+        private void CursorBusy(bool busy)
+        {
+            if (busy)
+            {
+                this.UseWaitCursor = true;
+            }
+            else
+            {
+                this.UseWaitCursor = false;
+            }
+        }
+        
 
     }
 }

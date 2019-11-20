@@ -78,19 +78,21 @@
             this.richTextBoxAbout.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.richTextBoxAbout.Size = new System.Drawing.Size(315, 303);
             this.richTextBoxAbout.TabIndex = 4;
-            this.richTextBoxAbout.Text = "This is a small program which was created on my leasure time and I really hope th" +
-    "is program will be helpful for all of you. \n\n\nhttps://github.com/dashtharindu\n";
+            this.richTextBoxAbout.Text = "This is a small program which was created on my leisure time and I really hope th" +
+    "is program will be helpful for all of you. \n\n\nDotnet Framework version 4.5\n\nhttp" +
+    "s://github.com/dashtharindu\n";
             // 
             // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(402, 441);
+            this.ClientSize = new System.Drawing.Size(404, 439);
             this.Controls.Add(this.richTextBoxAbout);
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.labelThank);
             this.Controls.Add(this.Owner);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(50, 50);

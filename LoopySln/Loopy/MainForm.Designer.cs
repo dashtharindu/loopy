@@ -49,7 +49,6 @@
             this.labelFrom = new System.Windows.Forms.Label();
             this.textBoxVarName = new System.Windows.Forms.TextBox();
             this.labelVarName = new System.Windows.Forms.Label();
-            this.progressBarMain = new System.Windows.Forms.ProgressBar();
             this.textBoxOutput = new System.Windows.Forms.TextBox();
             this.buttonGenerate = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
@@ -297,14 +296,6 @@
             this.labelVarName.TabIndex = 12;
             this.labelVarName.Text = "Variable Name";
             // 
-            // progressBarMain
-            // 
-            this.progressBarMain.ForeColor = System.Drawing.Color.DarkRed;
-            this.progressBarMain.Location = new System.Drawing.Point(16, 410);
-            this.progressBarMain.Name = "progressBarMain";
-            this.progressBarMain.Size = new System.Drawing.Size(755, 10);
-            this.progressBarMain.TabIndex = 12;
-            // 
             // textBoxOutput
             // 
             this.textBoxOutput.BackColor = System.Drawing.Color.LavenderBlush;
@@ -399,8 +390,8 @@
             // themeToolStripMenuItem
             // 
             this.themeToolStripMenuItem.Name = "themeToolStripMenuItem";
-            this.themeToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.themeToolStripMenuItem.Text = "Theme";
+            this.themeToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.themeToolStripMenuItem.Text = "Dark Theme";
             this.themeToolStripMenuItem.Click += new System.EventHandler(this.themeToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
@@ -421,7 +412,7 @@
             // 
             this.labelMessage.AutoSize = true;
             this.labelMessage.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMessage.ForeColor = System.Drawing.Color.Black;
+            this.labelMessage.ForeColor = System.Drawing.Color.DimGray;
             this.labelMessage.Location = new System.Drawing.Point(81, 360);
             this.labelMessage.Name = "labelMessage";
             this.labelMessage.Size = new System.Drawing.Size(0, 20);
@@ -440,13 +431,13 @@
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.buttonGenerate);
             this.Controls.Add(this.textBoxOutput);
-            this.Controls.Add(this.progressBarMain);
             this.Controls.Add(this.groupBoxMain);
             this.Controls.Add(this.labelLine);
             this.Controls.Add(this.labelMain);
             this.Controls.Add(this.textBoxInput);
             this.Controls.Add(this.menuStripMain);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripMain;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -477,7 +468,6 @@
         private System.Windows.Forms.Label labelTo;
         private System.Windows.Forms.TextBox textBoxFrom;
         private System.Windows.Forms.Label labelFrom;
-        private System.Windows.Forms.ProgressBar progressBarMain;
         private System.Windows.Forms.TextBox textBoxOutput;
         private System.Windows.Forms.Button buttonGenerate;
         private System.Windows.Forms.Button buttonClear;
