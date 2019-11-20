@@ -5,7 +5,7 @@
 #Purpose,
 #using this project HTML coders can write their codes much faster when there are multiple lines with the same contents but with a some small numerical changes(such as increment or decrement a number)
 #.
-#==================================================
+#===========================================================
 #.
 #Eg,
 #<img src="/img1" alt="image1">
@@ -18,7 +18,7 @@
 #.
 #<img src="/img[LoopY]" alt="[LoopY]">
 #.
-#==================================================
+#===========================================================
 #.
 #[LoopY] is a Default KEYWORD(you can change it if you need) for identify what number you need to loop in above code.
 
@@ -29,4 +29,16 @@
 
 #This program may be usefull rather than HTML. all you just need to do is type any line and set a range. 
 
-#THATS ALL  :) Enjoy and Happy coding.
+#===========================================================
+
+#Want to create this app as a "run once" application without installation or use admin previlages
+
+#I wanted to make this exe file as much as simple and fast as well as less dependency with additional files. 
+
+#So I didn't use additional ClassLibrary files because it creates a reference with additional .DLL files
+
+#If you have any better ideas I'm really happy to hear them and it will be a great help as well.
+
+
+
+#:) Enjoy and Happy coding. :)

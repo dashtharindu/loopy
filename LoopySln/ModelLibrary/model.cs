@@ -16,41 +16,7 @@ namespace ModelLibrary
         public string getVarNameSec { get; set; }
         public int getFromSec { get; set; }
 
-        public string GenerateOutput()
-        {
-            StringBuilder sbOut = new StringBuilder();
-
-            while (this.getFrom <= this.getTo)
-            {
-                string strOut = this.getInput.Replace(this.getVarName, this.getFrom.ToString());
-                if (getCheckbox)
-                {
-                    strOut = strOut.Replace(this.getVarNameSec, this.getFromSec.ToString());
-                }
-                sbOut.Append(strOut);
-                sbOut.Append(Environment.NewLine);
-
-                if (getBehavior == "Increment")
-                {
-                    this.getFrom++;
-                    if (getCheckbox)
-                    {
-                        this.getFromSec--;
-                    }  
-                }
-                else
-                {
-                    this.getFrom--;
-                    if (getCheckbox)
-                    {
-                        this.getFromSec++;
-                    }  
-                }
-
-            }
-
-            return sbOut.ToString();
-        }
+        
 
     }
 }

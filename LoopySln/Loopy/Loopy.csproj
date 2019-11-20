@@ -83,11 +83,5 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ModelLibrary\ModelLibrary.csproj">
-      <Project>{1acb7897-67db-43e0-afd8-3662d36e6165}</Project>
-      <Name>ModelLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

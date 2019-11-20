@@ -299,6 +299,7 @@
             // 
             // progressBarMain
             // 
+            this.progressBarMain.ForeColor = System.Drawing.Color.DarkRed;
             this.progressBarMain.Location = new System.Drawing.Point(16, 410);
             this.progressBarMain.Name = "progressBarMain";
             this.progressBarMain.Size = new System.Drawing.Size(755, 10);
@@ -407,6 +408,7 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.aboutToolStripMenuItem.Text = "Help";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 

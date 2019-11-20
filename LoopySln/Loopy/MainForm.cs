@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 //using System.Threading;
 using System.Windows.Forms;
-using ModelLibrary;
 
 namespace Loopy
 {
@@ -22,11 +21,12 @@ namespace Loopy
         {
             comboBoxIncDec.SelectedIndex = 0; //increment
             labelIncDecSec.Text = "Decrement"; //Decrement
-            groupBoxSec.Visible = false;
+            groupBoxSec.Visible = false; //hide the 2nd variable
         }
 
         private void comboBoxIncDec_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //change the variable's default values according to the dropdown menu text
             if (comboBoxIncDec.Text == "Decrement")
             {
                 textBoxFrom.Text = "100";
@@ -45,70 +45,128 @@ namespace Loopy
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
+            //clearing the output and labelMessage
             textBoxOutput.Clear();
+            ClearMessage();
         }
 
         private void buttonReset_Click(object sender, EventArgs e)
         {
+            //-- restarts the entire application --
+            //maybe useful when user needs to restore default values or for some unknown errors
             Application.Restart();
         }
 
         private void buttonCopy_Click(object sender, EventArgs e)
         {
+            //copy entire output at once
             try
             {
-                //labelMessage.Text = "";
-                //Thread STAThread = new Thread( 
-                //    delegate (){
-                //        Clipboard.SetText(textBoxOutput.Text);
-                //    });
-                //STAThread.SetApartmentState(ApartmentState.STA);
-                //STAThread.Start();
-                //STAThread.Join();
+                ClearMessage();
                 textBoxOutput.SelectAll();
                 textBoxOutput.Copy();
                 textBoxOutput.DeselectAll();
+                SuccessMessage("Output copied to the clipboard \nUse Ctrl+V or Select \"Paste\" from the right click menu to paste it");
             }
             catch(Exception ex)
             {
-                labelMessage.ForeColor = System.Drawing.Color.Red;
-                labelMessage.Text = $"Error \n{ex.Message}";
+                ErrorMessage(ex);
             }
             
         }
 
         private void buttonGenerate_Click(object sender, EventArgs e)
         {
-            labelMessage.Text = "";
+            //-- Main Functionality of this application --
+            //gets all inputs to the variables and use them to generate the output
+            //if user input large integer (more than 6chars) this software may tend to be unresponsive (if they use low end mechines less than 1gb memory) 
+            //so I did limited textbox length property to "6" for textBoxFrom , textBoxTo and textBoxToSec as well.
 
-            Model variable = new Model();
-            variable.getInput = textBoxInput.Text;
-            variable.getVarName = textBoxVarName.Text;
-            variable.getBehavior = comboBoxIncDec.Text;
-            variable.getFrom = Convert.ToInt32(textBoxFrom.Text);
-            variable.getTo = Convert.ToInt32(textBoxTo.Text);
-            variable.getCheckbox = checkBoxSec.Checked;
+            ///TODO-Looking forward more reliable and fast way of doing this
+            ///TODO-Add "progressBarMain" for loading using Async method and Using.System.Threading
 
-            variable.getVarNameSec = textBoxVarNameSec.Text;
-            variable.getFromSec = Convert.ToInt32(textBoxFromSec.Text);
+            try
+            {
+                ClearMessage();
+                DisplayMessage("Please Wait");
 
-            textBoxOutput.Text = variable.GenerateOutput();
+                string getVarName = textBoxVarName.Text;
+                string getBehavior = comboBoxIncDec.Text;
+                int getFrom = Convert.ToInt32(textBoxFrom.Text);
+                int getTo = Convert.ToInt32(textBoxTo.Text);
+                bool getCheckbox = checkBoxSec.Checked;
 
-            //catch(Exception ex)
-            //{
-            //    labelMessage.ForeColor = System.Drawing.Color.Red;
-            //    labelMessage.Text = $"Variable Customization Error\n{ex.Message}";
-            //}
+                //get Second variable
+                string getVarNameSec = textBoxVarNameSec.Text;
+                int getFromSec = Convert.ToInt32(textBoxFromSec.Text);
 
-            //catch (Exception ex)
-            //{
-            //    labelMessage.ForeColor = System.Drawing.Color.Red;
-            //    labelMessage.Text = $"Input Text or variable name error\n{ex.Message}";
-            //}
+                string getInput = textBoxInput.Text;
+                if (getInput!="")
+                {
+                    textBoxOutput.Text = GenerateOutput();
+                    SuccessMessage("Done!");
+                }
+
+                //Input text is blank
+                else
+                {
+                    DisplayMessage("Please Insert Your Text");
+                }
+
+                string GenerateOutput()
+                {
+                    StringBuilder sbOut = new StringBuilder();
+
+                    while (getFrom <= getTo)
+                    {
+                        string strOut = getInput.Replace(getVarName, getFrom.ToString());
+                        if (getCheckbox)
+                        {
+                            strOut = strOut.Replace(getVarNameSec, getFromSec.ToString());
+                        }
+                        sbOut.Append(strOut);
+                        sbOut.Append(Environment.NewLine);
+
+                        if (getBehavior == "Increment")
+                        {
+                            getFrom++;
+                            if (getCheckbox)
+                            {
+                                getFromSec--;
+                            }
+                        }
+                        else
+                        {
+                            getFrom--;
+                            if (getCheckbox)
+                            {
+                                getFromSec++;
+                            }
+                        }
+
+                    }
+
+                    return sbOut.ToString();
+                }
+
+            }
+
+            //display when user type any other data type such as "string" rather than "Int" in textBoxFrom or textBoxTo
+            catch (FormatException)
+            {
+                ErrorMessage("Incorrect text format. Please check all text fields again");
+            }
+            //Display common error
+            catch(Exception ex)
+            {
+                ErrorMessage(ex);
+            }
+
         }
 
         private void checkBoxSec_CheckedChanged(object sender, EventArgs e)
         {
+            //Show or Hide 2nd variable according to the checkbox status
             if (checkBoxSec.Checked)
             {
                 groupBoxSec.Visible = true;
@@ -121,6 +179,7 @@ namespace Loopy
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //Display Ablout form
             new About().Show();
         }
 
@@ -150,6 +209,7 @@ namespace Loopy
 
         private void themeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ///TODO-improve dark theme
             if(this.BackColor == Color.Black)
             {
                 this.BackColor = Color.MistyRose;
@@ -162,5 +222,65 @@ namespace Loopy
             }
             
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ///TODO-create help guide
+        }
+
+
+        /// <summary>
+        /// Display Error message as "Error \n{err.Message}" format
+        /// Text color will be in red
+        /// </summary>
+        /// <param name="err">Use to pass the exception (data type should be "Exception")</param>
+        private void ErrorMessage(Exception err)
+        {
+            labelMessage.ForeColor = Color.Red;
+            labelMessage.Text = $"Error \n{err.Message}";
+        }
+
+        /// <summary>
+        /// Display Custome Error message without displaying "Exception" as "Error \n{ErrMessage}" format
+        /// Text color will be in red
+        /// </summary>
+        /// <param name="ErrMessage">Use to pass the Custom Error Message (data type should be "String")</param>
+        private void ErrorMessage(string ErrMessage)
+        {
+            labelMessage.ForeColor = Color.Red;
+            labelMessage.Text = $"Error \n{ErrMessage}";
+        }
+
+
+        /// <summary>
+        /// Display Custom message in black
+        /// </summary>
+        /// <param name="dmsg">Use to pass any custom message (data type should be "string")</param>
+        private void DisplayMessage(string dmsg)
+        {
+            labelMessage.ForeColor = Color.Black;
+            labelMessage.Text = dmsg;
+        }
+
+
+        /// <summary>
+        /// Clear the labelMessage (Empty Method)
+        /// </summary>
+        private void ClearMessage()
+        {
+            labelMessage.Text = "";
+        }
+
+
+        /// <summary>
+        /// Display Success labelMessage in green
+        /// </summary>
+        /// <param name="msg">Use to pass the success message (data type should be "string")</param>
+        private void SuccessMessage(string msg)
+        {
+            labelMessage.ForeColor = Color.DarkGreen;
+            labelMessage.Text = msg;
+        }
+
     }
 }
