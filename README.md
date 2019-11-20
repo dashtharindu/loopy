@@ -20,14 +20,14 @@
 #.
 #===========================================================
 #.
-#[LoopY] is a Default KEYWORD(you can change it if you need) for identify what number you need to loop in above code.
+#[LoopY] is a Default KEYWORD(you can change it later if you need to) for identify what text you need to be replaced as a number in loop.
 
-#and you can adjest how many lines you need to loop by typing the number range for "[Loopy]". And also you can customize how it should behave(increment or decrement)
+#and you can adjest how many lines you need to loop by typing the number range for a "[LoopY]" variable. And also you can customize how it should behave(increment or decrement)
 
-#then program will automatically automatically generate all rest of the lines accordingly your inputs. 
+#then program will automatically generate all rest of the lines accordingly your input. 
 
 
-#This program may be usefull rather than HTML. all you just need to do is type any line and set a range. 
+#This program may can be useful for anyone not only for HTML but also other day-to-day text manipulations as well. all you just need to do is type any line and set a range. 
 
 #===========================================================
 
