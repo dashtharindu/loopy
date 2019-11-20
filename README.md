@@ -31,8 +31,6 @@
 
 #===========================================================
 
-#Want to create this app as a "run once" application without installation or use admin previlages
-
 #I wanted to make this exe file as much as simple and fast as well as less dependency with additional files. 
 
 #So I didn't use additional ClassLibrary files because it creates a reference with additional .DLL files
