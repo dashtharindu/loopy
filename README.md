@@ -5,20 +5,19 @@
 # Purpose,
 # using this project HTML coders can write their codes much faster when there are multiple lines with the same contents but with a some small numerical changes(such as increment or decrement a number)
 
-# ===========================================================
+## ===========================================================
 
 # Eg,
-# <img src="/img1" alt="image1">
-# <img src="/img2" alt="image2">
-# <img src="/img3" alt="image3">
-# <img src="/img4" alt="image4">
-# <img src="/img5" alt="image5">
+# \<img src="/img1" alt="image1">
+# \<img src="/img2" alt="image2">
+# \<img src="/img3" alt="image3">
+# \<img src="/img4" alt="image4">
+# \<img src="/img5" alt="image5">
 
 # with this program coders only need to type 1 single line (as follows) for the above example and it automatically generate all lines in a blink of an eye.
 
-# <img src="/img[LoopY]" alt="[LoopY]">
-
-# ===========================================================
+# \<img src="/img[LoopY]" alt="[LoopY]">
+## ===========================================================
 
 # [LoopY] is a Default KEYWORD(you can change it later if you need to) for identify what text you need to be replaced as a number in loop.
 
@@ -29,7 +28,7 @@
 
 # This program may can be useful for anyone not only for HTML but also other day-to-day text manipulations as well. all you just need to do is type any line and set a range. 
 
-# ===========================================================
+## ===========================================================
 
 # I wanted to make this exe file as much as simple and fast as well as less dependency with additional files. 
 
