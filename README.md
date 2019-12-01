@@ -8,11 +8,11 @@ This project is for HTML coders to write their codes much faster. If there are m
 
 Here's how this works,
 # Eg,
- \<img src="/img1" alt="image1">
- \<img src="/img2" alt="image2">
- \<img src="/img3" alt="image3">
- \<img src="/img4" alt="image4">
- \<img src="/img5" alt="image5">
+ \<img src="/img1" alt="image1"\><br>
+ \<img src="/img2" alt="image2"\><br>
+ \<img src="/img3" alt="image3"\><br>
+ \<img src="/img4" alt="image4"\><br>
+ \<img src="/img5" alt="image5"\><br>
 
 with this program,HTML coders only need to type 1 single line (as follows) for the above example and it automatically generate all lines in a blink of an eye.
 
