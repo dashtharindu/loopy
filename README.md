@@ -33,10 +33,6 @@ This program may can be useful for anyone not only for HTML but also other day-t
 
 # What I need,
 
-I want to make this exe file as much as simple and fast as well as less dependency with additional files. 
-
-So I didn't use additional ClassLibrary files because it creates a reference with additional .DLL files
-
 If you have any better ideas I'm really happy to hear them and it will be a great help for the future upgrades.
 
 
